@@ -18,7 +18,7 @@ class GetMap():
         junction_coords = []
         for junction in junctions:
             junction_location = junction.transform.location
-            junction_x = round(junction_location.x)+10
+            junction_x = round(junction_location.x)
             junction_y = round(junction_location.y)
             junction_coords.append((junction_x, junction_y))
 
