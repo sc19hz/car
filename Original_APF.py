@@ -166,7 +166,9 @@ if __name__ == '__main__':
         subplot.plot(start[0], start[1], '*r')
         subplot.plot(goal[0], goal[1], '*r')
     # 障碍物设置及绘制
-    obs = [[1, 4], [2, 4], [3, 3], [6, 1], [6, 7], [10, 6], [11, 12], [14, 14]]
+    obs = [[1, 4], [2, 4], [3, 3], [6, 1], [6, 7], [10, 6], [11, 12], [14, 14]]#unreach
+    # obs = [ [2, 4], [3, 3], [4,2]]#blocked
+    # obs = [[1, 4], [2, 4], [3, 3], [6, 1], [6, 7], [10, 6], [11, 12]]
     print('obstacles: {0}'.format(obs))
     for i in range(0):
         obs.append([random.uniform(2, goal[1] - 1), random.uniform(2, goal[1] - 1)])
