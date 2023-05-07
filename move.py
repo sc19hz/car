@@ -1,4 +1,6 @@
-
+# spawn_point = carla.Transform(carla.Location(x=100, y=305, z=5))
+# spawn_point2=carla.Transform(carla.Location(x=150, y=305, z=5))
+# destination = carla.Location(x=250, y=305, z=2)
 from agents.navigation.basic_agent import BasicAgent
 import math
 from numpy import random
@@ -37,16 +39,20 @@ def main():
         #spawn_points = map.get_spawn_points()
         #spawn_point = random.choice(spawn_points) if spawn_points else carla.Transform()
         startpoint=carla.Location(x=100, y=305, z=5)
-        destination_point = carla.Location(x=150, y=305, z=2)
+        startpoint_2=carla.Location(x=150, y=305, z=5)
+        destination_point = carla.Location(x=100, y=250, z=2)
         startRotation=setRotation(destination_point,startpoint)
         spawn_point = carla.Transform(carla.Location(x=100, y=305, z=5), startRotation)
+        spawn_point_2=carla.Transform(startpoint_2,carla.Rotation())
         # 创建车辆
         vehicle_bp = blueprint_library.find('vehicle.tesla.model3')
         vehicle_bp.set_attribute('role_name', 'autopilot')
 
         vehicle = world.spawn_actor(vehicle_bp, spawn_point)
+        # vehicle_2=world.spawn_actor(vehicle_bp, spawn_point_2)
         vehicle.set_autopilot(False)
         actor_list.append(vehicle)
+        # actor_list.append(vehicle_2)
         #构造自动驾驶的agent
         #设置目标点
         agent = BasicAgent(vehicle, target_speed=100)
@@ -54,6 +60,7 @@ def main():
         destination = carla.Transform(destination_point, carla.Rotation())
         destination_location = (destination.location.x, destination.location.y, destination.location.z)
         agent.set_destination(destination_location)
+
         # 添加相机
         camera_bp = blueprint_library.find('sensor.camera.rgb')
         # 与车辆相关的摄像头相对位置

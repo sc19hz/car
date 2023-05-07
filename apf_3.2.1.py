@@ -12,7 +12,7 @@ L = 4.7  # Vehicle length
 
 P0 = np.array([0, - d / 2, 1, 1]) # Vehicle starting position, representing x, y, vx, vy
 
-Pg = np.array([99, d /8, 0, 0]) # Goal position
+Pg = np.array([99, d / 2, 0, 0]) # Goal position
 
 # Obstacle positions
 Pobs = np.array([

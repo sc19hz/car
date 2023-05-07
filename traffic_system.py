@@ -81,7 +81,7 @@ def main():
     synchronous_master = False
 
     try:
-        world = client.load_world('Town02')
+        world = client.load_world('town03')
         origin_settings = world.get_settings()
 
         traffic_manager = client.get_trafficmanager(args.tm_port)
@@ -193,8 +193,10 @@ def main():
         camera = world.spawn_actor(camera_bp, camera_transform, attach_to=ego_vehicle)
         # set the callback function
         camera.listen(lambda image: sensor_callback(image, sensor_queue))
-
+        traffic_lights = world.get_actors().filter('traffic.traffic_light')
         while True:
+            for traffic_light in traffic_lights:
+                traffic_light.set_state(carla.TrafficLightState.Green)
             if args.sync and synchronous_master:
                 world.tick()
                 try:
